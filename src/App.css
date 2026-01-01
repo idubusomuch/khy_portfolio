@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* ===== Home Name Animation ===== */
+.name-hero {
+  /* 첫 등장 애니메이션 */
+  animation: hero-in 700ms ease-out both;
+}
+
+/* 빛이 지나가는 shimmer 효과 */
+.name-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.12) 35%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  animation: shimmer 1800ms ease-in-out 400ms infinite;
+}
+
+/* hover: 살짝 커지고 자간이 넓어지는 느낌 */
+.name-hero:hover {
+  transition: transform 220ms ease, letter-spacing 220ms ease;
+  transform: translateY(-2px) scale(1.02);
+  letter-spacing: 0.02em;
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%);
+  }
+  55% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
